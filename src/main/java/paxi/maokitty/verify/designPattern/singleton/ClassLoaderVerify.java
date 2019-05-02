@@ -2,6 +2,7 @@ package paxi.maokitty.verify.designPattern.singleton;
 
 import paxi.maokitty.verify.service.singleton.StaticInnerSingleTonService;
 import paxi.maokitty.verify.service.singleton.SingleTonEnum;
+import paxi.maokitty.verify.util.DirectorUtil;
 import paxi.maokitty.verify.util.PrintUtil;
 
 import java.io.File;
@@ -24,18 +25,15 @@ public class ClassLoaderVerify {
     }
 
     /**
-     * 破坏了双亲加载模型
+     * 破坏了双亲加载模型,使用了不同的类加载器
      */
     public void enumLoadClassOverrideTest(){
         ClassLoader firstLoader = getNewLoadClassPaxiClassLoader();
-        ClassLoader secondLoader =getNewLoadClassPaxiClassLoader();
         try {
             Class<?> firstLC = firstLoader.loadClass(SingleTonEnum.class.getName());
             Object first = executeGetInstance(firstLC);
-            Class<?> secondLC=secondLoader.loadClass(SingleTonEnum.class.getName());
-            Object second =executeGetInstance(secondLC);
-            PrintUtil.out("enumLoadClassOverrideTest first class loader is second class loader ? %b " , (first.getClass().getClassLoader() == second.getClass().getClassLoader()));
-            PrintUtil.out("enumLoadClassOverrideTest first obj is  sencond obj ? %b " , (first.hashCode() == second.hashCode()));
+            PrintUtil.out("enumLoadClassOverrideTest first class loader is SingleTonEnum.INSTANCE class loader ? %b ", (first.getClass().getClassLoader() == SingleTonEnum.INSTANCE.getClass().getClassLoader()));
+            PrintUtil.out("enumLoadClassOverrideTest first obj is  SingleTonEnum.INSTANCE obj ? %b " , (first.hashCode() == SingleTonEnum.INSTANCE.hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -47,14 +45,11 @@ public class ClassLoaderVerify {
 
     public void enumFindClassOverrideTest(){
         ClassLoader firstLoader = getNewPaxiFindClassClassLoader();
-        ClassLoader secondLoader =getNewPaxiFindClassClassLoader();
         try {
             Class<?> firstLC = firstLoader.loadClass(SingleTonEnum.class.getName());
             SingleTonEnum first = (SingleTonEnum) executeGetInstance(firstLC);
-            Class<?> secondLC=secondLoader.loadClass(SingleTonEnum.class.getName());
-            SingleTonEnum second = (SingleTonEnum) executeGetInstance(secondLC);
-            PrintUtil.out("enumFindClassOverrideTest first class loader is second class loader ? %b " ,(first.getClass().getClassLoader() == second.getClass().getClassLoader()));
-            PrintUtil.out("enumFindClassOverrideTest first obj is  sencond obj ? %b " ,(first.getInstance().hashCode() == second.getInstance().hashCode()));
+            PrintUtil.out("enumFindClassOverrideTest first class loader is SingleTonEnum.INSTANCE class loader ? %b " ,(first.getClass().getClassLoader() == SingleTonEnum.INSTANCE.getClass().getClassLoader()));
+            PrintUtil.out("enumFindClassOverrideTest first obj is  SingleTonEnum.INSTANCE obj ? %b " ,(first.getInstance().hashCode() == SingleTonEnum.INSTANCE.getInstance().hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -67,14 +62,25 @@ public class ClassLoaderVerify {
      */
     public void loadClassOverrideTest() {
         ClassLoader firstLoader = getNewLoadClassPaxiClassLoader();
-        ClassLoader secondLoader =getNewLoadClassPaxiClassLoader();
         try {
             Class<?> firstLC = firstLoader.loadClass(StaticInnerSingleTonService.class.getName());
             Object first = executeGetInstance(firstLC);
-            Class<?> secondLC=secondLoader.loadClass(StaticInnerSingleTonService.class.getName());
-            Object second =  executeGetInstance(secondLC);
-            PrintUtil.out("loadClassOverrideTest first class loader is second class loader ? %b " , (first.getClass().getClassLoader() == second.getClass().getClassLoader()));
-            PrintUtil.out("loadClassOverrideTest first obj is  sencond obj ? %b " , (first.hashCode() == second.hashCode()));
+            PrintUtil.out("loadClassOverrideTest first class loader is StaticInnerSingleTonService.getInstance() class loader ? %b " , (first.getClass().getClassLoader() == StaticInnerSingleTonService.getInstance().getClass().getClassLoader()));
+            PrintUtil.out("loadClassOverrideTest first obj is  StaticInnerSingleTonService.getInstance() obj ? %b " , (first.hashCode() == StaticInnerSingleTonService.getInstance().hashCode()));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 使用双亲加载模型
+     */
+    public void findClassOverrideTest(){
+        ClassLoader firstLoader = getNewPaxiFindClassClassLoader();
+        try {
+            Class<?> firstLC = firstLoader.loadClass(StaticInnerSingleTonService.class.getName());
+            StaticInnerSingleTonService first = (StaticInnerSingleTonService)executeGetInstance(firstLC);
+            System.out.println("findClassOverrideTest first class loader is StaticInnerSingleTonService.getInstance() class loader ? " + (first.getClass().getClassLoader() == StaticInnerSingleTonService.getInstance().getClass().getClassLoader()));
+            System.out.println("findClassOverrideTest first obj is  StaticInnerSingleTonService.getInstance() obj ? " + (first.getInstance().hashCode() == StaticInnerSingleTonService.getInstance().hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -90,8 +96,7 @@ public class ClassLoaderVerify {
                 dc.setAccessible(true);
                 obj = dc.newInstance();
             }
-            Method method = klazz.getMethod("getInstance");
-            return method.invoke(obj);
+           return obj;
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -104,24 +109,6 @@ public class ClassLoaderVerify {
         return null;
     }
 
-    /**
-     * 没有破坏双亲加载模式，
-     */
-    public void findClassOverrideTest(){
-        ClassLoader firstLoader = getNewPaxiFindClassClassLoader();
-        ClassLoader secondLoader =getNewPaxiFindClassClassLoader();
-        try {
-            Class<?> firstLC = firstLoader.loadClass(StaticInnerSingleTonService.class.getName());
-            StaticInnerSingleTonService first = (StaticInnerSingleTonService)executeGetInstance(firstLC);
-            Class<?> secondLC=secondLoader.loadClass(StaticInnerSingleTonService.class.getName());
-            StaticInnerSingleTonService second = (StaticInnerSingleTonService)executeGetInstance(secondLC);
-            System.out.println("findClassOverrideTest first class loader is second class loader ? "+(first.getClass().getClassLoader()==second.getClass().getClassLoader()));
-            System.out.println("findClassOverrideTest first obj is  sencond obj ? "+(first.getInstance().hashCode()==second.getInstance().hashCode()));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     private ClassLoader getNewLoadClassPaxiClassLoader(){
         return new ClassLoader() {
             @Override
@@ -130,7 +117,7 @@ public class ClassLoaderVerify {
                     //只加在自己的类
                     try {
                         String subPath = name.replaceAll("\\.", File.separator)+".class";
-                        String fName=System.getProperty("user.dir")+File.separator+"target"+File.separator+"classes"+File.separator+subPath;
+                        String fName= DirectorUtil.getProjectDir()+File.separator+"target"+File.separator+"classes"+File.separator+subPath;
                         FileInputStream is=new FileInputStream(new File(fName));
                         if (is==null){
                             return super.findClass(name);
@@ -160,7 +147,7 @@ public class ClassLoaderVerify {
                     //只加在自己的类
                     try {
                         String subPath = name.replaceAll("\\.", File.separator)+".class";
-                        String fName=System.getProperty("user.dir")+File.separator+"target"+File.separator+"classes"+File.separator+subPath;
+                        String fName=DirectorUtil.getProjectDir()+File.separator+"target"+File.separator+"classes"+File.separator+subPath;
                         FileInputStream is=new FileInputStream(new File(fName));
                         if (is==null){
                             return super.findClass(name);

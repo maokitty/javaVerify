@@ -1,7 +1,7 @@
 package paxi.maokitty.verify.util;
 
 /**
- * Created by liwangchun on 19/5/2.
+ * Created by maokitty on 19/5/2.
  */
 public class PrintUtil {
 
