@@ -1,7 +1,8 @@
 package paxi.maokitty.verify.designPattern.singleton;
 
-import paxi.maokitty.verify.service.singleton.SingleTonStaticInnerClassService;
+import paxi.maokitty.verify.service.singleton.StaticInnerSingleTonService;
 import paxi.maokitty.verify.service.singleton.SingleTonEnum;
+import paxi.maokitty.verify.util.PrintUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,8 +34,8 @@ public class ClassLoaderVerify {
             Object first = executeGetInstance(firstLC);
             Class<?> secondLC=secondLoader.loadClass(SingleTonEnum.class.getName());
             Object second =executeGetInstance(secondLC);
-            System.out.println("enumLoadClassOverrideTest first class loader is second class loader ? "+(first.getClass().getClassLoader()==second.getClass().getClassLoader()));
-            System.out.println("enumLoadClassOverrideTest first obj is  sencond obj ? "+(first.hashCode()==second.hashCode()));
+            PrintUtil.out("enumLoadClassOverrideTest first class loader is second class loader ? %b " , (first.getClass().getClassLoader() == second.getClass().getClassLoader()));
+            PrintUtil.out("enumLoadClassOverrideTest first obj is  sencond obj ? %b " , (first.hashCode() == second.hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -52,8 +53,8 @@ public class ClassLoaderVerify {
             SingleTonEnum first = (SingleTonEnum) executeGetInstance(firstLC);
             Class<?> secondLC=secondLoader.loadClass(SingleTonEnum.class.getName());
             SingleTonEnum second = (SingleTonEnum) executeGetInstance(secondLC);
-            System.out.println("enumFindClassOverrideTest first class loader is second class loader ? "+(first.getClass().getClassLoader()==second.getClass().getClassLoader()));
-            System.out.println("enumFindClassOverrideTest first obj is  sencond obj ? "+(first.getInstance().hashCode()==second.getInstance().hashCode()));
+            PrintUtil.out("enumFindClassOverrideTest first class loader is second class loader ? %b " ,(first.getClass().getClassLoader() == second.getClass().getClassLoader()));
+            PrintUtil.out("enumFindClassOverrideTest first obj is  sencond obj ? %b " ,(first.getInstance().hashCode() == second.getInstance().hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -68,12 +69,12 @@ public class ClassLoaderVerify {
         ClassLoader firstLoader = getNewLoadClassPaxiClassLoader();
         ClassLoader secondLoader =getNewLoadClassPaxiClassLoader();
         try {
-            Class<?> firstLC = firstLoader.loadClass(SingleTonStaticInnerClassService.class.getName());
+            Class<?> firstLC = firstLoader.loadClass(StaticInnerSingleTonService.class.getName());
             Object first = executeGetInstance(firstLC);
-            Class<?> secondLC=secondLoader.loadClass(SingleTonStaticInnerClassService.class.getName());
+            Class<?> secondLC=secondLoader.loadClass(StaticInnerSingleTonService.class.getName());
             Object second =  executeGetInstance(secondLC);
-            System.out.println("loadClassOverrideTest first class loader is second class loader ? "+(first.getClass().getClassLoader()==second.getClass().getClassLoader()));
-            System.out.println("loadClassOverrideTest first obj is  sencond obj ? "+(first.hashCode()==second.hashCode()));
+            PrintUtil.out("loadClassOverrideTest first class loader is second class loader ? %b " , (first.getClass().getClassLoader() == second.getClass().getClassLoader()));
+            PrintUtil.out("loadClassOverrideTest first obj is  sencond obj ? %b " , (first.hashCode() == second.hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -110,10 +111,10 @@ public class ClassLoaderVerify {
         ClassLoader firstLoader = getNewPaxiFindClassClassLoader();
         ClassLoader secondLoader =getNewPaxiFindClassClassLoader();
         try {
-            Class<?> firstLC = firstLoader.loadClass(SingleTonStaticInnerClassService.class.getName());
-            SingleTonStaticInnerClassService first = (SingleTonStaticInnerClassService)executeGetInstance(firstLC);
-            Class<?> secondLC=secondLoader.loadClass(SingleTonStaticInnerClassService.class.getName());
-            SingleTonStaticInnerClassService second = (SingleTonStaticInnerClassService)executeGetInstance(secondLC);
+            Class<?> firstLC = firstLoader.loadClass(StaticInnerSingleTonService.class.getName());
+            StaticInnerSingleTonService first = (StaticInnerSingleTonService)executeGetInstance(firstLC);
+            Class<?> secondLC=secondLoader.loadClass(StaticInnerSingleTonService.class.getName());
+            StaticInnerSingleTonService second = (StaticInnerSingleTonService)executeGetInstance(secondLC);
             System.out.println("findClassOverrideTest first class loader is second class loader ? "+(first.getClass().getClassLoader()==second.getClass().getClassLoader()));
             System.out.println("findClassOverrideTest first obj is  sencond obj ? "+(first.getInstance().hashCode()==second.getInstance().hashCode()));
         } catch (ClassNotFoundException e) {
