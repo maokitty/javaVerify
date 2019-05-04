@@ -5,7 +5,7 @@ package paxi.maokitty.verify.service.singleton;
  */
 public class DoubleCheckSingleTonService {
     private static volatile DoubleCheckSingleTonService INSTANCE;
-    public static final DoubleCheckSingleTonService getInstance(){
+    public static  DoubleCheckSingleTonService getInstance(){
         if (INSTANCE==null){
             synchronized (DoubleCheckSingleTonService.class){
               if (INSTANCE == null){

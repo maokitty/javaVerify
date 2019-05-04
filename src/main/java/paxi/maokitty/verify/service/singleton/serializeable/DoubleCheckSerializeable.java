@@ -12,7 +12,7 @@ public class DoubleCheckSerializeable implements Serializable{
 
     private DoubleCheckSerializeable(){}
 
-    public static final DoubleCheckSerializeable getInstance(){
+    public static  DoubleCheckSerializeable getInstance(){
         if (INSTANCE==null){
             synchronized(DoubleCheckSerializeable.class){
                 if (INSTANCE == null){

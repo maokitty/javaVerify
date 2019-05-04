@@ -6,7 +6,7 @@ package paxi.maokitty.verify.service.singleton.cloneable;
 public class DoubleCheckCloneable implements Cloneable {
    private static volatile  DoubleCheckCloneable INSTANCE= null;
    private DoubleCheckCloneable(){}
-   public static final DoubleCheckCloneable getInstance(){
+   public static  DoubleCheckCloneable getInstance(){
        if (INSTANCE == null){
            synchronized (DoubleCheckCloneable.class){
                if (INSTANCE == null)

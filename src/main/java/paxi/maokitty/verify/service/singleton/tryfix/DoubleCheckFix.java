@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by maokitty on 19/5/2.
  */
-public final class DoubleCheckFix implements Cloneable,Serializable{
+public  class DoubleCheckFix implements Cloneable,Serializable{
 
     private static final long serialVersionUID = 2376698019364690740L;
     private static volatile DoubleCheckFix INSTANCE=null;

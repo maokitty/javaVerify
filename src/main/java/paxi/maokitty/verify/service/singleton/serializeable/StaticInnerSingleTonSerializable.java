@@ -11,7 +11,7 @@ public class StaticInnerSingleTonSerializable implements Serializable{
         public  static  final StaticInnerSingleTonSerializable INSTANCE=new StaticInnerSingleTonSerializable();
     }
 
-    public static final StaticInnerSingleTonSerializable getInstance(){
+    public static  StaticInnerSingleTonSerializable getInstance(){
         return SingletonHolder.INSTANCE;
     }
 

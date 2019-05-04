@@ -5,7 +5,7 @@ package paxi.maokitty.verify.service.singleton;
  */
 public enum SingleTonEnum{
     INSTANCE;
-    public static final SingleTonEnum getInstance(){
+    public static  SingleTonEnum getInstance(){
         return INSTANCE;
     }
 

@@ -9,7 +9,7 @@ public class StaticInnerSingleTonService {
         public  static  final StaticInnerSingleTonService INSTANCE=new StaticInnerSingleTonService();
     }
 
-    public static final StaticInnerSingleTonService getInstance(){
+    public static  StaticInnerSingleTonService getInstance(){
         return SingletonHolder.INSTANCE;
     }
 
