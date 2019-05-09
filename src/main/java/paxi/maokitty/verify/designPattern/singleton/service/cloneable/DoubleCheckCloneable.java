@@ -1,4 +1,4 @@
-package paxi.maokitty.verify.service.singleton.cloneable;
+package paxi.maokitty.verify.designPattern.singleton.service.cloneable;
 
 /**
  * Created by maokitty on 19/5/2.

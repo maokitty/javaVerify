@@ -1,7 +1,9 @@
 package paxi.maokitty.verify.designPattern.singleton;
 
-import paxi.maokitty.verify.service.singleton.StaticInnerSingleTonService;
-import paxi.maokitty.verify.service.singleton.SingleTonEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import paxi.maokitty.verify.designPattern.singleton.service.StaticInnerSingleTonService;
+import paxi.maokitty.verify.designPattern.singleton.service.SingleTonEnum;
 import paxi.maokitty.verify.util.DirectorUtil;
 import paxi.maokitty.verify.util.PrintUtil;
 
@@ -9,13 +11,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * Created by maokitty on 19/4/28.
  * 使用双亲加载模型的都正常实现了单例，但是破坏了都无法实现类型转换
  */
 public class ClassLoaderVerify {
+    private static Logger LOG = LoggerFactory.getLogger(ClassLoaderVerify.class);
     public static void main(String[] args) {
         ClassLoaderVerify verify = new ClassLoaderVerify();
         verify.loadClassOverrideTest();
@@ -32,8 +34,8 @@ public class ClassLoaderVerify {
         try {
             Class<?> firstLC = firstLoader.loadClass(SingleTonEnum.class.getName());
             Object first = executeGetInstance(firstLC);
-            PrintUtil.out("enumLoadClassOverrideTest first class loader is SingleTonEnum.INSTANCE class loader ? %b ", (first.getClass().getClassLoader() == SingleTonEnum.INSTANCE.getClass().getClassLoader()));
-            PrintUtil.out("enumLoadClassOverrideTest first obj is  SingleTonEnum.INSTANCE obj ? %b " , (first.hashCode() == SingleTonEnum.INSTANCE.hashCode()));
+            LOG.info("enumLoadClassOverrideTest first class loader is SingleTonEnum.INSTANCE class loader ? {} ", (first.getClass().getClassLoader() == SingleTonEnum.INSTANCE.getClass().getClassLoader()));
+            LOG.info("enumLoadClassOverrideTest first obj is  SingleTonEnum.INSTANCE obj ? {} ", (first.hashCode() == SingleTonEnum.INSTANCE.hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -48,8 +50,8 @@ public class ClassLoaderVerify {
         try {
             Class<?> firstLC = firstLoader.loadClass(SingleTonEnum.class.getName());
             SingleTonEnum first = (SingleTonEnum) executeGetInstance(firstLC);
-            PrintUtil.out("enumFindClassOverrideTest first class loader is SingleTonEnum.INSTANCE class loader ? %b " ,(first.getClass().getClassLoader() == SingleTonEnum.INSTANCE.getClass().getClassLoader()));
-            PrintUtil.out("enumFindClassOverrideTest first obj is  SingleTonEnum.INSTANCE obj ? %b " ,(first.getInstance().hashCode() == SingleTonEnum.INSTANCE.getInstance().hashCode()));
+            LOG.info("enumFindClassOverrideTest first class loader is SingleTonEnum.INSTANCE class loader ? {}", (first.getClass().getClassLoader() == SingleTonEnum.INSTANCE.getClass().getClassLoader()));
+            LOG.info("enumFindClassOverrideTest first obj is  SingleTonEnum.INSTANCE obj ? {}", (first.getInstance().hashCode() == SingleTonEnum.INSTANCE.getInstance().hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -65,8 +67,8 @@ public class ClassLoaderVerify {
         try {
             Class<?> firstLC = firstLoader.loadClass(StaticInnerSingleTonService.class.getName());
             Object first = executeGetInstance(firstLC);
-            PrintUtil.out("loadClassOverrideTest first class loader is StaticInnerSingleTonService.getInstance() class loader ? %b " , (first.getClass().getClassLoader() == StaticInnerSingleTonService.getInstance().getClass().getClassLoader()));
-            PrintUtil.out("loadClassOverrideTest first obj is  StaticInnerSingleTonService.getInstance() obj ? %b " , (first.hashCode() == StaticInnerSingleTonService.getInstance().hashCode()));
+            LOG.info("loadClassOverrideTest first class loader is StaticInnerSingleTonService.getInstance() class loader ? {} ", (first.getClass().getClassLoader() == StaticInnerSingleTonService.getInstance().getClass().getClassLoader()));
+            LOG.info("loadClassOverrideTest first obj is  StaticInnerSingleTonService.getInstance() obj ? {} ", (first.hashCode() == StaticInnerSingleTonService.getInstance().hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -79,8 +81,8 @@ public class ClassLoaderVerify {
         try {
             Class<?> firstLC = firstLoader.loadClass(StaticInnerSingleTonService.class.getName());
             StaticInnerSingleTonService first = (StaticInnerSingleTonService)executeGetInstance(firstLC);
-            System.out.println("findClassOverrideTest first class loader is StaticInnerSingleTonService.getInstance() class loader ? " + (first.getClass().getClassLoader() == StaticInnerSingleTonService.getInstance().getClass().getClassLoader()));
-            System.out.println("findClassOverrideTest first obj is  StaticInnerSingleTonService.getInstance() obj ? " + (first.getInstance().hashCode() == StaticInnerSingleTonService.getInstance().hashCode()));
+            LOG.info("findClassOverrideTest first class loader is StaticInnerSingleTonService.getInstance() class loader ? {} " ,(first.getClass().getClassLoader() == StaticInnerSingleTonService.getInstance().getClass().getClassLoader()));
+            LOG.info("findClassOverrideTest first obj is  StaticInnerSingleTonService.getInstance() obj ? {}" ,(first.getInstance().hashCode() == StaticInnerSingleTonService.getInstance().hashCode()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

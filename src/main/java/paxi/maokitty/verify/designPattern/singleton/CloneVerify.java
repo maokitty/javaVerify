@@ -1,14 +1,17 @@
 package paxi.maokitty.verify.designPattern.singleton;
 
-import paxi.maokitty.verify.service.singleton.cloneable.DoubleCheckCloneable;
-import paxi.maokitty.verify.service.singleton.cloneable.StaticInnerCloneable;
-import paxi.maokitty.verify.service.singleton.tryfix.DoubleCheckFix;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import paxi.maokitty.verify.designPattern.singleton.service.cloneable.DoubleCheckCloneable;
+import paxi.maokitty.verify.designPattern.singleton.service.cloneable.StaticInnerCloneable;
+import paxi.maokitty.verify.designPattern.singleton.service.tryfix.DoubleCheckFix;
 import paxi.maokitty.verify.util.PrintUtil;
 
 /**
  * Created by maokitty on 19/5/2.
  */
 public class CloneVerify {
+    private static final Logger LOG = LoggerFactory.getLogger(CloneVerify.class);
     public static void main(String[] args) {
         CloneVerify verify = new CloneVerify();
         verify.doubleCheckVerify();
@@ -24,7 +27,7 @@ public class CloneVerify {
     public void doubleCheckVerify(){
         try {
             DoubleCheckCloneable first= (DoubleCheckCloneable) DoubleCheckCloneable.getInstance().clone();
-            PrintUtil.out("doubleCheckVerify first obj is  DoubleCheckCloneable.getInstance() obj ? %b",(first.hashCode()== DoubleCheckCloneable.getInstance().hashCode()));
+            LOG.info("doubleCheckVerify first obj is  DoubleCheckCloneable.getInstance() obj ? {}", (first.hashCode() == DoubleCheckCloneable.getInstance().hashCode()));
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -37,7 +40,7 @@ public class CloneVerify {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        PrintUtil.out("doubleCheckFixCloneVerify first obj is  DoubleCheckFix.getInstance obj ? %b", (first.hashCode() == DoubleCheckFix.getInstance().hashCode()));
+        LOG.info("doubleCheckFixCloneVerify first obj is  DoubleCheckFix.getInstance obj ? {}", (first.hashCode() == DoubleCheckFix.getInstance().hashCode()));
     }
 
 
@@ -47,17 +50,17 @@ public class CloneVerify {
     public void innerStaticVerify(){
         try {
             StaticInnerCloneable first = (StaticInnerCloneable) StaticInnerCloneable.getInstance().clone();
-            PrintUtil.out("doubleCheckVerify first obj is  StaticInnerCloneable.getInstance() obj ? %b",(first.hashCode()== StaticInnerCloneable.getInstance().hashCode()));
+            LOG.info("doubleCheckVerify first obj is  StaticInnerCloneable.getInstance() obj ? {}", (first.hashCode() == StaticInnerCloneable.getInstance().hashCode()));
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
     }
 
     public void notCloneableVerify(){
-        PrintUtil.out("not support cloneable class will be error");
+        LOG.info("not support cloneable class will be error");
     }
 
     public void enumVerify(){
-        PrintUtil.out("enum not support clone");
+        LOG.info("enum not support clone");
     }
 }

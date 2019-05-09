@@ -1,9 +1,11 @@
 package paxi.maokitty.verify.designPattern.singleton;
 
-import paxi.maokitty.verify.service.singleton.SingleTonEnum;
-import paxi.maokitty.verify.service.singleton.serializeable.DoubleCheckSerializeable;
-import paxi.maokitty.verify.service.singleton.serializeable.StaticInnerSingleTonSerializable;
-import paxi.maokitty.verify.service.singleton.tryfix.DoubleCheckFix;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import paxi.maokitty.verify.designPattern.singleton.service.SingleTonEnum;
+import paxi.maokitty.verify.designPattern.singleton.service.serializeable.DoubleCheckSerializeable;
+import paxi.maokitty.verify.designPattern.singleton.service.serializeable.StaticInnerSingleTonSerializable;
+import paxi.maokitty.verify.designPattern.singleton.service.tryfix.DoubleCheckFix;
 import paxi.maokitty.verify.util.DirectorUtil;
 import paxi.maokitty.verify.util.PrintUtil;
 
@@ -13,6 +15,7 @@ import java.io.*;
  * Created by maokitty on 19/5/2.
  */
 public class SerializeVerify {
+    private static final Logger LOG = LoggerFactory.getLogger(SerializeVerify.class);
     public static void main(String[] args) {
         SerializeVerify serial = new SerializeVerify();
         serial.doubleCheckJavaSerializeVerify();
@@ -28,22 +31,22 @@ public class SerializeVerify {
     public void doubleCheckJavaSerializeVerify(){
         javaSerialize(DoubleCheckSerializeable.getInstance());
         DoubleCheckSerializeable first = (DoubleCheckSerializeable)javaDeserialize();
-        PrintUtil.out("doubleCheckJavaSerializeVerify first obj is  DoubleCheckSerializeable.getInstance obj ? %b", (first.hashCode() == DoubleCheckSerializeable.getInstance().hashCode()));
+        LOG.info("doubleCheckJavaSerializeVerify first obj is  DoubleCheckSerializeable.getInstance obj ? {}", (first.hashCode() == DoubleCheckSerializeable.getInstance().hashCode()));
     }
     public void doubleCheckFixSerializeVerify(){
         javaSerialize(DoubleCheckFix.getInstance());
         DoubleCheckFix first = (DoubleCheckFix)javaDeserialize();
-        PrintUtil.out("doubleCheckFixSerializeVerify first obj is  DoubleCheckFix.getInstance obj ? %b", (first.hashCode() == DoubleCheckFix.getInstance().hashCode()));
+        LOG.info("doubleCheckFixSerializeVerify first obj is  DoubleCheckFix.getInstance obj ? {} ", (first.hashCode() == DoubleCheckFix.getInstance().hashCode()));
     }
 
     public void notSerializeVerify(){
-        PrintUtil.out("not support serialize will be error");
+        LOG.info("not support serialize will be error");
     }
 
     public void enumSerializeVerify(){
         javaSerialize(SingleTonEnum.getInstance());
         SingleTonEnum first = (SingleTonEnum) javaDeserialize();
-        PrintUtil.out("enumSerializeVerify first obj is  SingleTonEnum.getInstance obj ? %b", (first.hashCode() == SingleTonEnum.getInstance().hashCode()));
+        LOG.info("enumSerializeVerify first obj is  SingleTonEnum.getInstance obj ? {}", (first.hashCode() == SingleTonEnum.getInstance().hashCode()));
     }
 
     /**
@@ -52,7 +55,7 @@ public class SerializeVerify {
     public void innerStaticSerializeVerify(){
         javaSerialize(StaticInnerSingleTonSerializable.getInstance());
         StaticInnerSingleTonSerializable first = (StaticInnerSingleTonSerializable) javaDeserialize();
-        PrintUtil.out("innerStaticSerializeVerify first obj is  StaticInnerSingleTonSerializable.getInstance obj ? %b", (first.hashCode() == StaticInnerSingleTonSerializable.getInstance().hashCode()));
+        LOG.info("innerStaticSerializeVerify first obj is  StaticInnerSingleTonSerializable.getInstance obj ? {}", (first.hashCode() == StaticInnerSingleTonSerializable.getInstance().hashCode()));
     }
 
 

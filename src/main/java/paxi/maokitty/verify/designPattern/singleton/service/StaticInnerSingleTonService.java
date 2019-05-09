@@ -1,4 +1,4 @@
-package paxi.maokitty.verify.service.singleton;
+package paxi.maokitty.verify.designPattern.singleton.service;
 
 /**
  * Created by maokitty on 19/4/28.

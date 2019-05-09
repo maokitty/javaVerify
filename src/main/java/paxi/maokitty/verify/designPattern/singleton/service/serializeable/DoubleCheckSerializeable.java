@@ -1,4 +1,4 @@
-package paxi.maokitty.verify.service.singleton.serializeable;
+package paxi.maokitty.verify.designPattern.singleton.service.serializeable;
 
 import java.io.Serializable;
 

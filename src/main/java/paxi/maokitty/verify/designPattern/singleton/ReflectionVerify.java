@@ -1,10 +1,12 @@
 package paxi.maokitty.verify.designPattern.singleton;
 
 
-import paxi.maokitty.verify.service.singleton.DoubleCheckSingleTonService;
-import paxi.maokitty.verify.service.singleton.SingleTonEnum;
-import paxi.maokitty.verify.service.singleton.StaticInnerSingleTonService;
-import paxi.maokitty.verify.service.singleton.tryfix.DoubleCheckFix;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import paxi.maokitty.verify.designPattern.singleton.service.DoubleCheckSingleTonService;
+import paxi.maokitty.verify.designPattern.singleton.service.SingleTonEnum;
+import paxi.maokitty.verify.designPattern.singleton.service.StaticInnerSingleTonService;
+import paxi.maokitty.verify.designPattern.singleton.service.tryfix.DoubleCheckFix;
 import paxi.maokitty.verify.util.PrintUtil;
 
 import java.lang.reflect.Constructor;
@@ -15,6 +17,7 @@ import java.lang.reflect.InvocationTargetException;
  * Created by maokitty on 19/5/2.
  */
 public class ReflectionVerify {
+    private static final Logger LOG = LoggerFactory.getLogger(ReflectionVerify.class);
     public static void main(String[] args) {
         ReflectionVerify reflect=new ReflectionVerify();
         reflect.staticInnerClassVerify();
@@ -29,7 +32,7 @@ public class ReflectionVerify {
     public void staticInnerClassVerify(){
         Class<StaticInnerSingleTonService> klazz = StaticInnerSingleTonService.class;
         StaticInnerSingleTonService first = (StaticInnerSingleTonService) executeGetInstance(klazz);
-        PrintUtil.out("staticInnerClassVerify first obj is  StaticInnerSingleTonService.getInstance() obj ? %b", (first.hashCode() == StaticInnerSingleTonService.getInstance().hashCode()));
+        LOG.info("staticInnerClassVerify first obj is  StaticInnerSingleTonService.getInstance() obj ? {}", (first.hashCode() == StaticInnerSingleTonService.getInstance().hashCode()));
     }
 
     /**
@@ -38,7 +41,7 @@ public class ReflectionVerify {
     public void enumClassVerify(){
         Class<SingleTonEnum> klazz = SingleTonEnum.class;
         SingleTonEnum first = (SingleTonEnum) executeGetInstance(klazz);
-        PrintUtil.out("enumClassVerify first obj is  SingleTonEnum.getInstance() obj ? %b",(first.hashCode()==SingleTonEnum.getInstance().hashCode()));
+        LOG.info("enumClassVerify first obj is  SingleTonEnum.getInstance() obj ? {}", (first.hashCode() == SingleTonEnum.getInstance().hashCode()));
     }
 
     /**
@@ -47,7 +50,7 @@ public class ReflectionVerify {
      public void dcClassVerify(){
         Class<DoubleCheckSingleTonService> klazz = DoubleCheckSingleTonService.class;
          DoubleCheckSingleTonService first = (DoubleCheckSingleTonService) executeGetInstance(klazz);
-         PrintUtil.out("dcClassVerify first obj is  DoubleCheckSingleTonService.getInstance() obj ? %b",(first.hashCode()==DoubleCheckSingleTonService.getInstance().hashCode()));
+         LOG.info("dcClassVerify first obj is  DoubleCheckSingleTonService.getInstance() obj ? {}", (first.hashCode() == DoubleCheckSingleTonService.getInstance().hashCode()));
      }
 
     public void doubleCheckReflectFailFixVerify(){
@@ -60,7 +63,7 @@ public class ReflectionVerify {
             Field create = klazz.getDeclaredField("create");
             create.setAccessible(true);
             create.setBoolean("create", false);
-            PrintUtil.out("doubleCheckReflectFailFixVerify first obj is  DoubleCheckFix.getInstance() obj ? %b",(first.hashCode()==DoubleCheckFix.getInstance().hashCode()));
+            LOG.info("doubleCheckReflectFailFixVerify first obj is  DoubleCheckFix.getInstance() obj ? {}",(first.hashCode()==DoubleCheckFix.getInstance().hashCode()));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

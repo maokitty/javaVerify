@@ -1,4 +1,4 @@
-package paxi.maokitty.verify.service.singleton.tryfix;
+package paxi.maokitty.verify.designPattern.singleton.service.tryfix;
 
 import java.io.Serializable;
 
