@@ -14,11 +14,13 @@ public class TargetInnerCallTransactionVerify {
     public static void main(String[] args) {
         ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
         InnerCallTransactionService transactionService = (InnerCallTransactionService) ac.getBean("innerCallTransactionService");
+        LOG.info("start outerInsert");
         try {
             transactionService.outerInsert();
         }catch (Exception e){
             LOG.error("main",e);
         }
+        LOG.info("start innerInsert");
         try {
             transactionService.innerInsert();
         }catch (Exception e){

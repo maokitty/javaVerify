@@ -2,10 +2,9 @@ package paxi.maokitty.verify.designPattern.singleton;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import paxi.maokitty.verify.designPattern.singleton.service.StaticInnerSingleTonService;
 import paxi.maokitty.verify.designPattern.singleton.service.SingleTonEnum;
+import paxi.maokitty.verify.designPattern.singleton.service.StaticInnerSingleTonService;
 import paxi.maokitty.verify.util.DirectorUtil;
-import paxi.maokitty.verify.util.PrintUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
