@@ -12,6 +12,7 @@ import paxi.maokitty.verify.spring.transaction.service.SupprotTransactionTestSer
 public class SupportTransactionVerify {
     private static final Logger LOG = LoggerFactory.getLogger(SupportTransactionVerify.class);
     public static void main(String[] args) {
+        LOG.info("change local mysql username and password before run");
         ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
         SupprotTransactionTestService tx = (SupprotTransactionTestService) ac.getBean("supprotTransactionTestService");
         try {

@@ -13,6 +13,7 @@ public class RequireTransactionVerify {
     private static final Logger LOG = LoggerFactory.getLogger(RequireTransactionVerify.class);
 
     public static void main(String[] args) {
+        LOG.info("change local mysql username and password before run");
         ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
         RequireTransactionService tx = (RequireTransactionService) ac.getBean("requireTransactionService");
         try {

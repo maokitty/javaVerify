@@ -12,6 +12,7 @@ import paxi.maokitty.verify.spring.transaction.service.InnerCallTransactionServi
 public class TargetInnerCallTransactionVerify {
     private static Logger LOG = LoggerFactory.getLogger(TargetInnerCallTransactionVerify.class);
     public static void main(String[] args) {
+        LOG.info("change local mysql username and password before run");
         ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
         InnerCallTransactionService transactionService = (InnerCallTransactionService) ac.getBean("innerCallTransactionService");
         LOG.info("start outerInsert");

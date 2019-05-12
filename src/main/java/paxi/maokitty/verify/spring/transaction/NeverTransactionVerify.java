@@ -13,6 +13,7 @@ public class NeverTransactionVerify {
     private static final Logger LOG = LoggerFactory.getLogger(NeverTransactionVerify.class);
 
     public static void main(String[] args) {
+        LOG.info("change local mysql username and password before run");
         ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
         NeverTransactionService tx = (NeverTransactionService) ac.getBean("neverTransactionService");
         try {

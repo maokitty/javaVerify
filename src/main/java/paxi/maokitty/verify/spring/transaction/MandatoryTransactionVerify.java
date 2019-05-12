@@ -13,6 +13,7 @@ public class MandatoryTransactionVerify {
     private static final Logger LOG = LoggerFactory.getLogger(MandatoryTransactionVerify.class);
 
     public static void main(String[] args) {
+        LOG.info("change local mysql username and password before run");
         ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
         MandatoryTransactionService tx = (MandatoryTransactionService) ac.getBean("mandatoryTransactionService");
         try {
