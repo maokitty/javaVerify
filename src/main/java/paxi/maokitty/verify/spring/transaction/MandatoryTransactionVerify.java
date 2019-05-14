@@ -14,7 +14,7 @@ public class MandatoryTransactionVerify {
 
     public static void main(String[] args) {
         LOG.info("change local mysql username and password before run");
-        ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("tx-application.xml");
         MandatoryTransactionService tx = (MandatoryTransactionService) ac.getBean("mandatoryTransactionService");
         try {
             tx.noTransaction();

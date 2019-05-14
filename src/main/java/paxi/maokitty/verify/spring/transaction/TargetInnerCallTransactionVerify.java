@@ -13,7 +13,7 @@ public class TargetInnerCallTransactionVerify {
     private static Logger LOG = LoggerFactory.getLogger(TargetInnerCallTransactionVerify.class);
     public static void main(String[] args) {
         LOG.info("change local mysql username and password before run");
-        ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("tx-application.xml");
         InnerCallTransactionService transactionService = (InnerCallTransactionService) ac.getBean("innerCallTransactionService");
         LOG.info("start outerInsert");
         try {

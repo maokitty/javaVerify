@@ -13,7 +13,7 @@ public class NotSupportTransactionVerify {
     private static Logger LOG = LoggerFactory.getLogger(NotSupportTransactionVerify.class);
     public static void main(String[] args) {
         LOG.info("change local mysql username and password before run");
-        ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("tx-application.xml");
         NotSupportTransactionService tx = (NotSupportTransactionService) ac.getBean("notSupportTransactionService");
         try {
             tx.noTransaction();
