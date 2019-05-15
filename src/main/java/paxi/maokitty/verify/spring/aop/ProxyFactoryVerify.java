@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
 import paxi.maokitty.verify.spring.aop.domain.ComplexClass;
+import paxi.maokitty.verify.spring.aop.service.AnnotationService;
 import paxi.maokitty.verify.spring.aop.service.ExecuteService;
+import paxi.maokitty.verify.spring.aop.service.inter.AnnotherInterface;
 import paxi.maokitty.verify.spring.aop.service.inter.ExecuteInterface;
 
 /**
@@ -18,6 +20,7 @@ public class ProxyFactoryVerify {
     private static final Logger LOG = LoggerFactory.getLogger(ProxyFactoryVerify.class);
     public static void main(String[] args) {
 
+        //创建代理的时候，目标对象有接口就使用JDK代理，否则使用CGLIB
         ProxyFactory proxyFactory=new ProxyFactory(new ExecuteService());
 
         MethodInterceptor aroundAdvice = new MethodInterceptor() {
@@ -37,6 +40,7 @@ public class ProxyFactoryVerify {
         nameAdvisor.setAdvice(aroundAdvice);
         proxyFactory.addAdvisor(nameAdvisor);
 
+        //代理接口创建需要使用接口来处理代理，否则会有异常: java.lang.ClassCastException: com.sun.proxy.$Proxy17 cannot be cast to paxi.maokitty.verify.spring.aop.service.ExecuteService
         ExecuteInterface proxy = (ExecuteInterface) proxyFactory.getProxy();
         ComplexClass c=new ComplexClass();
         c.setDesc("complex");
