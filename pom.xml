@@ -16,6 +16,7 @@
         <slf4j.version>empty_version</slf4j.version>
         <log4j2.version>2.7</log4j2.version>
         <slf4j.jcl.version>1.7.2</slf4j.jcl.version>
+        <aspectj.version>1.8.9</aspectj.version>
     </properties>
 
     <dependencies>
@@ -94,6 +95,13 @@
             <version>${log4j2.version}</version>
         </dependency>
         <!-- log4j2 组件 end -->
+
+        <dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+
     </dependencies>
     
 </project>

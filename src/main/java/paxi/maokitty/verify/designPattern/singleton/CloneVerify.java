@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import paxi.maokitty.verify.designPattern.singleton.service.cloneable.DoubleCheckCloneable;
 import paxi.maokitty.verify.designPattern.singleton.service.cloneable.StaticInnerCloneable;
 import paxi.maokitty.verify.designPattern.singleton.service.tryfix.DoubleCheckFix;
-import paxi.maokitty.verify.util.PrintUtil;
 
 /**
  * Created by maokitty on 19/5/2.

@@ -7,7 +7,6 @@ import paxi.maokitty.verify.designPattern.singleton.service.serializeable.Double
 import paxi.maokitty.verify.designPattern.singleton.service.serializeable.StaticInnerSingleTonSerializable;
 import paxi.maokitty.verify.designPattern.singleton.service.tryfix.DoubleCheckFix;
 import paxi.maokitty.verify.util.DirectorUtil;
-import paxi.maokitty.verify.util.PrintUtil;
 
 import java.io.*;
 

@@ -7,7 +7,6 @@ import paxi.maokitty.verify.designPattern.singleton.service.DoubleCheckSingleTon
 import paxi.maokitty.verify.designPattern.singleton.service.SingleTonEnum;
 import paxi.maokitty.verify.designPattern.singleton.service.StaticInnerSingleTonService;
 import paxi.maokitty.verify.designPattern.singleton.service.tryfix.DoubleCheckFix;
-import paxi.maokitty.verify.util.PrintUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

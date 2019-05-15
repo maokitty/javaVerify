@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util.xsd">
     <util:properties id="dataSourceProps" location="classpath:conf/database.properties"/>
-    <context:component-scan base-package="paxi.maokitty.verify.spring"/>
+    <context:component-scan base-package="paxi.maokitty.verify.spring.transaction"/>
     <bean id="dataSourceTestForTransaction" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName" value="#{dataSourceProps['jdbc.driverClassName']}"/>
         <property name="url" value="#{dataSourceProps['jdbc.url']}"/>
