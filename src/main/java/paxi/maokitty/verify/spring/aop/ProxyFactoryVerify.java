@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
 import paxi.maokitty.verify.spring.aop.domain.ComplexClass;
-import paxi.maokitty.verify.spring.aop.service.AnnotationService;
 import paxi.maokitty.verify.spring.aop.service.ExecuteService;
-import paxi.maokitty.verify.spring.aop.service.inter.AnnotherInterface;
 import paxi.maokitty.verify.spring.aop.service.inter.ExecuteInterface;
 
 /**
