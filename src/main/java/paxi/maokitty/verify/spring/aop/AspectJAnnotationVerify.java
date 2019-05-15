@@ -4,15 +4,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import paxi.maokitty.verify.spring.aop.domain.ComplexClass;
 import paxi.maokitty.verify.spring.aop.service.AnnotationService;
-import paxi.maokitty.verify.spring.aop.service.ExecuteService;
+import paxi.maokitty.verify.spring.aop.service.inter.ExecuteInterface;
 
 /**
  * Created by maokitty on 19/5/14.
+ * https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/aop.html#aop-introduction
  */
-public class AdviceVerify {
+public class AspectJAnnotationVerify {
     public static void main(String[] args) {
         ApplicationContext ac = new ClassPathXmlApplicationContext("aop-application.xml");
-        ExecuteService exe = ac.getBean("executeService", ExecuteService.class);
+        ExecuteInterface exe = ac.getBean("executeService", ExecuteInterface.class);
         ComplexClass c=new ComplexClass();
         c.setValue(1);
         c.setDesc("complex");

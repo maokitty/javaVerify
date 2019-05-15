@@ -4,12 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import paxi.maokitty.verify.spring.aop.domain.ComplexClass;
+import paxi.maokitty.verify.spring.aop.service.inter.ExecuteInterface;
 
 /**
  * Created by maokitty on 19/5/14.
  */
 @Service
-public class ExecuteService {
+public class ExecuteService implements ExecuteInterface {
     private static final Logger LOG = LoggerFactory.getLogger(ExecuteService.class);
 
     public void  logicError(){
