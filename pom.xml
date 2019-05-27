@@ -17,12 +17,18 @@
         <log4j2.version>2.7</log4j2.version>
         <slf4j.jcl.version>1.7.2</slf4j.jcl.version>
         <aspectj.version>1.8.9</aspectj.version>
+        <hystrix.version>1.5.12</hystrix.version>
     </properties>
 
     <dependencies>
          <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
          </dependency>
         <dependency>
@@ -53,6 +59,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -96,12 +107,68 @@
         </dependency>
         <!-- log4j2 组件 end -->
 
+        <!-- aop start -->
         <dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
 		</dependency>
+        <!-- aop end-->
+        <!-- hystrix start-->
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+            <version>${hystrix.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-metrics-event-stream</artifactId>
+            <version>${hystrix.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-request-servlet</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <!-- hystrix end-->
 
     </dependencies>
-    
+
+    <build>
+    <plugins>
+         <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<webResources>-->
+                        <!--<resource>-->
+                            <!--<directory>src/main/resources</directory>-->
+                            <!--<targetPath>WEB-INF</targetPath>-->
+                            <!--<filtering>true</filtering>-->
+                            <!--<includes>-->
+                                <!--<include>conf/*.properties</include>-->
+                            <!--</includes>-->
+                        <!--</resource>-->
+                    <!--</webResources>-->
+                <!--</configuration>-->
+         <!--</plugin>-->
+         <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>8.1.16.v20140903</version>
+                <configuration>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>9000</port>
+                        </connector>
+                    </connectors>
+                    <stopKey>STOP</stopKey>
+                    <stopPort>9090</stopPort>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                    </webAppConfig>
+                </configuration>
+            </plugin>
+    </plugins>
+    </build>
 </project>
