@@ -10,7 +10,7 @@ import rx.observables.ConnectableObservable;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by liwangchun on 19/5/30.
+ * Created by maokitty on 19/5/30.
  */
 public class StopEmitDataWhenNoSubscribeVerify {
     private static final Logger LOG = LoggerFactory.getLogger(StopEmitDataWhenNoSubscribeVerify.class);
