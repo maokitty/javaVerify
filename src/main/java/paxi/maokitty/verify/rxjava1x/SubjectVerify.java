@@ -3,6 +3,7 @@ package paxi.maokitty.verify.rxjava1x;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rx.functions.Action1;
+import rx.subjects.BehaviorSubject;
 import rx.subjects.PublishSubject;
 
 /**
@@ -13,6 +14,7 @@ public class SubjectVerify {
     private static Logger LOG = LoggerFactory.getLogger(SubjectVerify.class);
     public static void main(String[] args) {
         publishSubjectVerify();
+        behaviorSubjectVerify();
     }
 
     /**
@@ -24,6 +26,20 @@ public class SubjectVerify {
             integerPublishSubject.onNext(i);
             if (i==8){
                 LOG.info("only subscribe when i equals 8,it will only get the data 9");
+                integerPublishSubject.subscribe(new Action1<Integer>() {
+                    public void call(Integer integer) {
+                        LOG.info("subscribe value:{}", integer);
+                    }
+                });
+            }
+        }
+    }
+    private static void behaviorSubjectVerify() {
+        BehaviorSubject<Integer> integerPublishSubject = BehaviorSubject.<Integer>create();
+        for (int i=0;i<10;i++){
+            integerPublishSubject.onNext(i);
+            if (i==8){
+                LOG.info("only subscribe when i equals 8,it will  get the data 8,9");
                 integerPublishSubject.subscribe(new Action1<Integer>() {
                     public void call(Integer integer) {
                         LOG.info("subscribe value:{}", integer);

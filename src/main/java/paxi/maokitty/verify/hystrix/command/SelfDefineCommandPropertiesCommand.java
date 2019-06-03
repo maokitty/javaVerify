@@ -35,4 +35,6 @@ public class SelfDefineCommandPropertiesCommand extends HystrixCommand<String> {
         LOG.info("getFallback");
         return "fallback success";
     }
+
+
 }

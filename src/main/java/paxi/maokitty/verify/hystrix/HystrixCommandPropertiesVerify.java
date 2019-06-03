@@ -29,33 +29,34 @@ public class HystrixCommandPropertiesVerify {
                     word=word+""+i;
                 }
                 SelfDefineCommandPropertiesCommand command = new SelfDefineCommandPropertiesCommand(logicService,word, Setting.LOW_CIRCUIT_BREAKER_THRESHOLD);
-                command.execute();
+                String execute = command.execute();
+                LOG.info("execute:{}",execute);
 //                LOG.info("short circuite:{} open:{} fromFallback:{} count:{}",command.isResponseShortCircuited(), command.isCircuitBreakerOpen(),command.isResponseFromFallback(),(i));
             }catch (Exception e){
                 LOG.error("a", e);
             }
         }
-        StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-        for (int i=0;i<20;i++)
-        {
-            try {
-                String word="another day";
-                if (i>1){
-                    word="1";
-                }else{
-                    word=word+""+i;
-                }
-                SelfDefineCommandPropertiesCommand command = new SelfDefineCommandPropertiesCommand(logicService,word, Setting.LOW_CIRCUIT_BREAKER_THRESHOLD);
-                command.execute();
-                stopWatch.split();
-                LOG.info("time cost:{}",stopWatch.getSplitTime());
-//                LOG.info("short circuite:{} open:{} fromFallback:{} count:{}",command.isResponseShortCircuited(), command.isCircuitBreakerOpen(),command.isResponseFromFallback(),(i));
-            }catch (Exception e){
-                LOG.error("a", e);
-            }
-        }
-        stopWatch.split();
-        LOG.info("time cost:{}",stopWatch.getSplitTime());
+//        StopWatch stopWatch = new StopWatch();
+//        stopWatch.start();
+//        for (int i=0;i<20;i++)
+//        {
+//            try {
+//                String word="another day";
+//                if (i>1){
+//                    word="1";
+//                }else{
+//                    word=word+""+i;
+//                }
+//                SelfDefineCommandPropertiesCommand command = new SelfDefineCommandPropertiesCommand(logicService,word, Setting.LOW_CIRCUIT_BREAKER_THRESHOLD);
+//                command.execute();
+//                stopWatch.split();
+//                LOG.info("time cost:{}",stopWatch.getSplitTime());
+////                LOG.info("short circuite:{} open:{} fromFallback:{} count:{}",command.isResponseShortCircuited(), command.isCircuitBreakerOpen(),command.isResponseFromFallback(),(i));
+//            }catch (Exception e){
+//                LOG.error("a", e);
+//            }
+//        }
+//        stopWatch.split();
+//        LOG.info("time cost:{}",stopWatch.getSplitTime());
     }
 }
