@@ -34,7 +34,7 @@ public class Test {
                 }
 //                TimeUnit.MILLISECONDS.sleep(190);
                 //还和休眠的时间有关系,没有休眠，全部通过,有休眠才执行
-                SelfDefineCommandPropertiesCommand command = new SelfDefineCommandPropertiesCommand(logicService,word, Setting.LOW_CIRCUIT_BREAKER_THRESHOLD);
+                SelfDefineCommandPropertiesCommand command = new SelfDefineCommandPropertiesCommand(logicService,word, Setting.ERROR_VOLUMNE_THRESHOLD);
                 command.execute();
 //                LOG.info("short circuite:{} open:{} fromFallback:{} count:{}",command.isResponseShortCircuited(), command.isCircuitBreakerOpen(),command.isResponseFromFallback(),(i));
             }catch (Exception e){

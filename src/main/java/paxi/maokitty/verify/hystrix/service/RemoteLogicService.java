@@ -3,6 +3,8 @@ package paxi.maokitty.verify.hystrix.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by maokitty on 19/5/22.
  */
@@ -14,6 +16,7 @@ public class RemoteLogicService {
 
     public void errorByCommand(String command) throws Exception {
         LOG.info("errorByCommand command:{}",command);
+        TimeUnit.MILLISECONDS.sleep(50);
         if ("1".endsWith(command)){
             throw new Exception("aa");
         }
