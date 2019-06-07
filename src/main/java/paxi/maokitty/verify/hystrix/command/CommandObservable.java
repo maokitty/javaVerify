@@ -2,6 +2,9 @@ package paxi.maokitty.verify.hystrix.command;
 
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixObservableCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import paxi.maokitty.verify.hystrix.service.RemoteLogicService;
 import rx.Observable;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
@@ -11,28 +14,37 @@ import rx.schedulers.Schedulers;
  * HystrixObservableCommand  是一种特殊的 HystrixCommand
  */
 public class CommandObservable extends HystrixObservableCommand<String> {
-    private final String name;
-    public CommandObservable(String name){
+    private static final Logger LOG  = LoggerFactory.getLogger(CommandObservable.class);
+    private RemoteLogicService logicService;
+    private String word;
+    public CommandObservable(String name,RemoteLogicService remoteLogicService){
         //这里做配置用
         super(HystrixCommandGroupKey.Factory.asKey("ExampleGroup"));
-        this.name=name;
+        this.word=name;
+        this.logicService=remoteLogicService;
 
     }
     @Override
     protected Observable<String> construct() {
-        return Observable.create(new Observable.OnSubscribe<String>(){
+        return Observable.create(new Observable.OnSubscribe<String>() {
 
             public void call(Subscriber<? super String> observer) {
                 try {
-                    if (!observer.isUnsubscribed()){
-                        observer.onNext("hello");
-                        observer.onNext(name);
+                    if (!observer.isUnsubscribed()) {
+                        logicService.errorByCommand(word);
+                        observer.onNext("run success");
                         observer.onCompleted();
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     observer.onError(e);
                 }
             }
-        }).subscribeOn(Schedulers.io());
+        });
+    }
+
+    @Override
+    protected Observable<String> resumeWithFallback() {
+        LOG.info("fallback run");
+        return Observable.just("run resumeWithFallback");
     }
 }
