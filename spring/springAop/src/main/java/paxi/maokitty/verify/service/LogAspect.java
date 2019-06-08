@@ -18,7 +18,7 @@ public class LogAspect {
     private static final Logger LOG = LoggerFactory.getLogger(LogAspect.class);
 
     //定义所有ExecuteService的方法执行的时候都需要加上这个切面
-    @Pointcut("execution(* paxi.maokitty.verify.spring.aop.service.ExecuteService.*(..))")
+    @Pointcut("execution(* paxi.maokitty.verify.service.ExecuteService.*(..))")
     public void allClassPointCut(){
         //空壳，什么都不会干
         LOG.info("this log will not be show");
@@ -60,7 +60,7 @@ public class LogAspect {
     }
 
     //方法上定义注解
-    @Pointcut("@annotation(paxi.maokitty.verify.spring.aop.annotation.SelfAnnotation))")
+    @Pointcut("@annotation(paxi.maokitty.verify.annotation.SelfAnnotation))")
     public void selfAnnotionPointCut(){}
 
     @Around("selfAnnotionPointCut()")

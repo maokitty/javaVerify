@@ -38,7 +38,7 @@ public class ProxyFactoryVerify {
         nameAdvisor.setAdvice(aroundAdvice);
         proxyFactory.addAdvisor(nameAdvisor);
 
-        //代理接口创建需要使用接口来处理代理，否则会有异常: java.lang.ClassCastException: com.sun.proxy.$Proxy17 cannot be cast to paxi.maokitty.verify.spring.aop.service.ExecuteService
+        //代理接口创建需要使用接口来处理代理，否则会有异常: java.lang.ClassCastException: com.sun.proxy.$Proxy17 cannot be cast to paxi.maokitty.verify.service.ExecuteService
         ExecuteInterface proxy = (ExecuteInterface) proxyFactory.getProxy();
         ComplexClass c=new ComplexClass();
         c.setDesc("complex");
