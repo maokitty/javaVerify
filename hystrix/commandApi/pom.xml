@@ -12,5 +12,6 @@
     <artifactId>hystrix</artifactId>
     <groupId>paxi</groupId>
     <version>1.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
   </parent>
 </project>
