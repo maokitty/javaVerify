@@ -3,19 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>paxi.maokitty.verify</groupId>
-  <artifactId>designPattern</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>commandApi</artifactId>
+  <packaging>jar</packaging>
 
-  <name>designPattern</name>
-  <modules>
-    <module>singleton</module>
-  </modules>
+  <name>commandApi</name>
 
   <parent>
-    <artifactId>maoitty</artifactId>
+    <artifactId>hystrix</artifactId>
     <groupId>paxi</groupId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../</relativePath>
   </parent>
-
 </project>
