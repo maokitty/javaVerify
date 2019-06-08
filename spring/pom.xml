@@ -4,12 +4,14 @@
 
   <groupId>paxi.maokitty.verify</groupId>
   <artifactId>spring</artifactId>
+    <!-- module核心关注-->
   <packaging>pom</packaging>
 
   <name>spring</name>
 
   <modules>
-    <module>springAop</module><module>transaction</module>
+      <module>springAop</module>
+      <module>transaction</module>
   </modules>
 
   <properties>
