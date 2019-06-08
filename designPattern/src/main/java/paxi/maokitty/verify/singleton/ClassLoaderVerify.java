@@ -1,9 +1,9 @@
-package paxi.maokitty.verify.designPattern.singleton;
+package paxi.maokitty.verify.singleton;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import paxi.maokitty.verify.designPattern.singleton.service.SingleTonEnum;
-import paxi.maokitty.verify.designPattern.singleton.service.StaticInnerSingleTonService;
+import paxi.maokitty.verify.singleton.service.SingleTonEnum;
+import paxi.maokitty.verify.singleton.service.StaticInnerSingleTonService;
 import paxi.maokitty.verify.util.DirectorUtil;
 
 import java.io.File;
@@ -118,7 +118,8 @@ public class ClassLoaderVerify {
                     //只加在自己的类
                     try {
                         String subPath = name.replaceAll("\\.", File.separator)+".class";
-                        String fName= DirectorUtil.getProjectDir()+File.separator+"target"+File.separator+"classes"+File.separator+subPath;
+                        String fName= DirectorUtil.getDesignPatternDir()+File.separator+"target"+File.separator+"classes"+File.separator+subPath;
+                        LOG.info("fName:{}",fName);
                         FileInputStream is=new FileInputStream(new File(fName));
                         if (is==null){
                             return super.findClass(name);
@@ -148,7 +149,7 @@ public class ClassLoaderVerify {
                     //只加在自己的类
                     try {
                         String subPath = name.replaceAll("\\.", File.separator)+".class";
-                        String fName=DirectorUtil.getProjectDir()+File.separator+"target"+File.separator+"classes"+File.separator+subPath;
+                        String fName= DirectorUtil.getDesignPatternDir()+File.separator+"target"+File.separator+"classes"+File.separator+subPath;
                         FileInputStream is=new FileInputStream(new File(fName));
                         if (is==null){
                             return super.findClass(name);

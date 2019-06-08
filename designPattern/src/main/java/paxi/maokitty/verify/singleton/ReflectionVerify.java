@@ -1,12 +1,12 @@
-package paxi.maokitty.verify.designPattern.singleton;
+package paxi.maokitty.verify.singleton;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import paxi.maokitty.verify.designPattern.singleton.service.DoubleCheckSingleTonService;
-import paxi.maokitty.verify.designPattern.singleton.service.SingleTonEnum;
-import paxi.maokitty.verify.designPattern.singleton.service.StaticInnerSingleTonService;
-import paxi.maokitty.verify.designPattern.singleton.service.tryfix.DoubleCheckFix;
+import paxi.maokitty.verify.singleton.service.DoubleCheckSingleTonService;
+import paxi.maokitty.verify.singleton.service.SingleTonEnum;
+import paxi.maokitty.verify.singleton.service.StaticInnerSingleTonService;
+import paxi.maokitty.verify.singleton.service.tryfix.DoubleCheckFix;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

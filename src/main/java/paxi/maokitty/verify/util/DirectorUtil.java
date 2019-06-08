@@ -11,4 +11,8 @@ public class DirectorUtil {
     public static String dcSerializeAddress(){
         return getProjectDir()+"/src/main/resources/serialize/singleton.ser";
     }
+
+    public static String getDesignPatternDir(){
+        return System.getProperty("user.dir")+"/designPattern";
+    }
 }
