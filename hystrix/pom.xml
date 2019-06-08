@@ -10,6 +10,7 @@
         <module>commandApi</module>
         <module>rxjava1</module>
         <module>webmonitor</module>
+        <module>hystrixDashboard</module>
     </modules>
 
   <properties>
