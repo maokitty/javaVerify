@@ -10,15 +10,21 @@ import java.util.concurrent.TimeUnit;
  */
 public class RemoteLogicService {
     private static final Logger LOG = LoggerFactory.getLogger(RemoteLogicService.class);
-    public void normalSay(String word){
-        LOG.info("normalSay :{}",word);
+    public void normalSay(String command){
+        LOG.info("normalSay :{}",command);
+    }
+
+    public void sayNothing(String command) throws Exception {
+        if ("1".endsWith(command)){
+            throw new Exception("run command 1");
+        }
     }
 
     public void errorByCommand(String command) throws Exception {
         LOG.info("errorByCommand command:{}",command);
         TimeUnit.MILLISECONDS.sleep(50);
         if ("1".endsWith(command)){
-            throw new Exception("aa");
+            throw new Exception("run command 1");
         }
     }
 

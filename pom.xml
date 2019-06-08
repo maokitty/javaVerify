@@ -130,6 +130,12 @@
             <artifactId>hystrix-request-servlet</artifactId>
             <version>1.1.2</version>
         </dependency>
+        <!-- hystrix metrix -->
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-servo-metrics-publisher</artifactId>
+            <version>1.5.18</version>
+        </dependency>
         <!-- hystrix end-->
 
     </dependencies>

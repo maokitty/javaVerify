@@ -66,4 +66,8 @@ public interface Setting {
                 .withMaxQueueSize(2)
                 .withQueueSizeRejectionThreshold(2)
                 ;
+        HystrixThreadPoolProperties.Setter SMALL_CORE_SIZE = HystrixThreadPoolProperties.Setter()
+                .withCoreSize(1)
+                .withMaxQueueSize(10)
+                ;
 }
