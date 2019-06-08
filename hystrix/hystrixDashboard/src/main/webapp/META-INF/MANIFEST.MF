@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Implementation-Title: com.netflix.hystrix#hystrix-dashboard;1.5.18
+Module-Origin: https://github.com/Netflix/Hystrix.git
+Build-Date: 2018-11-16_22:50:26
+Build-Id: 456195344
+Implementation-Version: 1.5.18
+Module-Owner: netflixoss@netflix.com
+Build-Number: 1500
+Built-By: travis
+Change: 809104c
+Module-Source: /hystrix-dashboard
+Branch: 809104c8751be0065a8269df3677965f3092e6b9
+Built-Status: integration
+Gradle-Version: 3.1
+Build-Job: Netflix/Hystrix
+Built-OS: Linux
+X-Compile-Target-JDK: 1.6
+Build-Host: travis-job-netflix-hystrix-456195345.travisci.net
+X-Compile-Source-JDK: 1.6
+Created-By: 1.8.0_151-b12 (Oracle Corporation)
+Module-Email: netflixoss@netflix.com
+Build-Java-Version: 1.8.0_151
+

@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>paxi.maokitty.verify</groupId>
+  <artifactId>hystrixDashboard</artifactId>
+  <packaging>war</packaging>
+
+  <name>hystrixDashboard</name>
+  <parent>
+    <artifactId>hystrix</artifactId>
+    <groupId>paxi</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+     <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+        <scope>provided</scope>
+    </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.4.1</version>
+    </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>4.4.1</version>
+    </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.5</version>
+    </dependency><dependency><groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId><version>3.1.0</version></dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty-maven-plugin</artifactId>
+            <version>8.1.16.v20140903</version>
+            <configuration>
+                <connectors>
+                    <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                        <port>9003</port>
+                    </connector>
+                </connectors>
+                <stopKey>STOP</stopKey>
+                <stopPort>9093</stopPort>
+                <!--webApp 启动报错  Cannot find default setter in class org.mortbay.jetty.plugin.JettyWebAppContext ，反编译出war新建项目尝试 -->
+                <!--<webApp>hystrix-dashboard-1.5.18.war</webApp>-->
+                <webAppConfig>
+                    <contextPath>/</contextPath>
+                </webAppConfig>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
+</project>
