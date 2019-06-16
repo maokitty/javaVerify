@@ -3,21 +3,20 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>paxi.maokitty.verify</groupId>
-  <artifactId>designPattern</artifactId>
-  <packaging>pom</packaging>
-
-  <name>designPattern</name>
-  <modules>
-    <module>singleton</module>
-    <module>observer</module>
-    <module>command</module>
-  </modules>
+  <artifactId>command</artifactId>
+  <packaging>jar</packaging>
 
   <parent>
-    <artifactId>maoitty</artifactId>
-    <groupId>paxi</groupId>
+    <artifactId>designPattern</artifactId>
+    <groupId>paxi.maokitty.verify</groupId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../</relativePath>
   </parent>
+
+  <name>command</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
 </project>

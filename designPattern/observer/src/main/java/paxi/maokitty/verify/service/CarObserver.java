@@ -3,7 +3,7 @@ package paxi.maokitty.verify.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import paxi.maokitty.verify.constant.LightColor;
-import paxi.maokitty.verify.service.inter.TrafficLightObserver;
+import paxi.maokitty.verify.command.inter.TrafficLightObserver;
 
 /**
  * Created by maokitty on 19/6/9.

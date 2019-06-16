@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import paxi.maokitty.verify.domain.ComplexClass;
-import paxi.maokitty.verify.service.inter.ExecuteInterface;
+import paxi.maokitty.verify.command.inter.ExecuteInterface;
 
 /**
  * Created by maokitty on 19/5/14.

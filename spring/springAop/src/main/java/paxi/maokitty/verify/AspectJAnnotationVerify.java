@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import paxi.maokitty.verify.domain.ComplexClass;
 import paxi.maokitty.verify.service.AnnotationService;
-import paxi.maokitty.verify.service.inter.ExecuteInterface;
+import paxi.maokitty.verify.command.inter.ExecuteInterface;
 
 /**
  * Created by maokitty on 19/5/14.

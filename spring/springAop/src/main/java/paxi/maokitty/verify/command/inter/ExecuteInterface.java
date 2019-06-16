@@ -1,4 +1,4 @@
-package paxi.maokitty.verify.service.inter;
+package paxi.maokitty.verify.command.inter;
 
 
 import paxi.maokitty.verify.domain.ComplexClass;

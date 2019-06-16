@@ -1,7 +1,7 @@
 package paxi.maokitty.verify.service;
 
 import paxi.maokitty.verify.constant.LightColor;
-import paxi.maokitty.verify.service.inter.TrafficLightObserver;
+import paxi.maokitty.verify.command.inter.TrafficLightObserver;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

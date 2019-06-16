@@ -8,7 +8,7 @@ import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
 import paxi.maokitty.verify.domain.ComplexClass;
 import paxi.maokitty.verify.service.ExecuteService;
-import paxi.maokitty.verify.service.inter.ExecuteInterface;
+import paxi.maokitty.verify.command.inter.ExecuteInterface;
 
 /**
  * Created by maokitty on 19/5/15.
