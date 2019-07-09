@@ -12,7 +12,9 @@
         <module>designPattern</module>
         <module>hystrix</module>
         <module>purejava</module>
-        <module>spring</module><module>rxjava2</module>
+        <module>spring</module>
+        <module>rxjava2</module>
+        <module>algorithm</module>
     </modules>
 
     <properties>
