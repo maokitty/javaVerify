@@ -40,4 +40,23 @@ public class InnerCallTransactionService {
         int i=1/0;
     }
 
+    /**
+     内部嵌套仍然生效
+     main [DEBUG]  (AbstractPlatformTransactionManager.java:851) Initiating transaction rollback
+     main [DEBUG]  (DataSourceTransactionManager.java:284) Rolling back JDBC transaction on Connection [com.mysql.jdbc.JDBC4Connection@1d483de4]
+     main [DEBUG]  (DataSourceTransactionManager.java:327) Releasing JDBC Connection [com.mysql.jdbc.JDBC4Connection@1d483de4] after transaction
+     main [DEBUG]  (DataSourceUtils.java:327) Returning JDBC Connection to DataSource
+     main [ERROR]  (TargetInnerCallTransactionVerify.java:35) main
+     java.lang.ArithmeticException: / by zero
+     */
+    @Transactional
+    public void wrapOfInnerInsert(){
+       LOG.info("wrapOfInnerInsert execute");
+        error();
+    }
+    private void error(){
+        LOG.info("error execute");
+        int i=1/0;
+    }
+
 }

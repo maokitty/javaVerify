@@ -28,5 +28,12 @@ public class TargetInnerCallTransactionVerify {
             LOG.error("main",e);
         }
 
+        LOG.info("start wrapOfInnerInsert");
+        try {
+            transactionService.wrapOfInnerInsert();
+        }catch (Exception e){
+            LOG.error("main",e);
+        }
+
     }
 }
