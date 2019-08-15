@@ -14,7 +14,9 @@
         <module>purejava</module>
         <module>spring</module>
         <module>rxjava2</module>
-        <module>algorithm</module><module>netty</module>
+        <module>algorithm</module>
+        <module>netty</module>
+        <module>thrift</module>
     </modules>
 
     <properties>
@@ -24,6 +26,7 @@
         <commons.lang3.version>3.4</commons.lang3.version>
     </properties>
     <dependencies>
+        <!--以下会被子模块自动继承 -->
         <!-- log4j2 组件 start -->
              <dependency>
           <groupId>org.slf4j</groupId>
