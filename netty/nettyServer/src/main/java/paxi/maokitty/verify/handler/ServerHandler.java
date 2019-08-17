@@ -1,6 +1,5 @@
 package paxi.maokitty.verify.handler;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -30,7 +29,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
-        LOG.info("channelActive remoteAddress:{}",ctx.channel().remoteAddress().toString());
+        LOG.info("channelActive remoteAddress:{}", ctx.channel().remoteAddress().toString());
     }
 
     @Override

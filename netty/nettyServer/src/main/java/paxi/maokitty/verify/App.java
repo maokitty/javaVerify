@@ -33,7 +33,7 @@ public class App {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addFirst("idleHandler",new ServerIdleHandler(0,0,10, TimeUnit.SECONDS));
+                            pipeline.addFirst("idleHandler",new ServerIdleHandler(0,0,90, TimeUnit.SECONDS));
                             //将收到的Bytebuf转成String
                             pipeline.addLast("stringDecoder", new StringDecoder());
                             //将写的String转成byteBuf
